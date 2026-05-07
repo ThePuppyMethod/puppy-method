@@ -1233,23 +1233,25 @@ fbq('track', 'PageView');
     <p class="overline primary" style="display:block;text-align:center;margin-bottom:0.75rem;">Have a question?</p>
     <h2 style="font-family:var(--font-heading);font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:600;text-align:center;letter-spacing:-0.01em;margin-bottom:0.75rem;">Get in touch</h2>
     <p style="text-align:center;color:var(--text-secondary);margin-bottom:3rem;">I personally reply to every message within 24 hours.</p>
-    <form action="https://formspree.io/f/thepuppymethod@outlook.com" method="POST" style="display:flex;flex-direction:column;gap:1.25rem;">
+    <form id="contact-form" onsubmit="sendBrevoEmail(event)" style="display:flex;flex-direction:column;gap:1.25rem;">
       <div class="contact-name-email" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
         <div>
           <label style="font-size:0.8125rem;font-weight:600;color:var(--text-secondary);display:block;margin-bottom:0.4rem;">Name</label>
-          <input type="text" name="name" required placeholder="Your name" style="width:100%;padding:0.875rem 1rem;border:1px solid var(--border);border-radius:12px;background:var(--background);font-family:var(--font-body);font-size:1rem;color:var(--text-primary);outline:none;transition:border 200ms ease-out;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'">
+          <input type="text" id="contact-name" required placeholder="Your name" style="width:100%;padding:0.875rem 1rem;border:1px solid var(--border);border-radius:12px;background:var(--background);font-family:var(--font-body);font-size:1rem;color:var(--text-primary);outline:none;transition:border 200ms ease-out;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'">
         </div>
         <div>
           <label style="font-size:0.8125rem;font-weight:600;color:var(--text-secondary);display:block;margin-bottom:0.4rem;">Email</label>
-          <input type="email" name="email" required placeholder="your@email.com" style="width:100%;padding:0.875rem 1rem;border:1px solid var(--border);border-radius:12px;background:var(--background);font-family:var(--font-body);font-size:1rem;color:var(--text-primary);outline:none;transition:border 200ms ease-out;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'">
+          <input type="email" id="contact-email" required placeholder="your@email.com" style="width:100%;padding:0.875rem 1rem;border:1px solid var(--border);border-radius:12px;background:var(--background);font-family:var(--font-body);font-size:1rem;color:var(--text-primary);outline:none;transition:border 200ms ease-out;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'">
         </div>
       </div>
       <div>
         <label style="font-size:0.8125rem;font-weight:600;color:var(--text-secondary);display:block;margin-bottom:0.4rem;">Message</label>
-        <textarea name="message" required rows="5" placeholder="Write your message here..." style="width:100%;padding:0.875rem 1rem;border:1px solid var(--border);border-radius:12px;background:var(--background);font-family:var(--font-body);font-size:1rem;color:var(--text-primary);outline:none;resize:vertical;transition:border 200ms ease-out;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+        <textarea id="contact-message" required rows="5" placeholder="Write your message here..." style="width:100%;padding:0.875rem 1rem;border:1px solid var(--border);border-radius:12px;background:var(--background);font-family:var(--font-body);font-size:1rem;color:var(--text-primary);outline:none;resize:vertical;transition:border 200ms ease-out;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'"></textarea>
       </div>
-      <input type="hidden" name="_replyto" value="thepuppymethod@outlook.com">
-      <button type="submit" class="btn-primary" style="align-self:flex-start;padding:1rem 2.5rem;">Send message</button>
+      <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+        <button type="submit" id="contact-submit" class="btn-primary" style="padding:1rem 2.5rem;">Send message</button>
+        <p id="contact-feedback" style="font-size:0.875rem;color:var(--text-muted);display:none;"></p>
+      </div>
     </form>
   </div>
 </section>
@@ -1462,5 +1464,55 @@ function trackAndGo(e, el) {
 })();
 </script>
 
+
+<script>
+async function sendBrevoEmail(e) {
+  e.preventDefault();
+  const btn = document.getElementById('contact-submit');
+  const feedback = document.getElementById('contact-feedback');
+  const name = document.getElementById('contact-name').value;
+  const email = document.getElementById('contact-email').value;
+  const message = document.getElementById('contact-message').value;
+
+  btn.textContent = 'Sending...';
+  btn.style.opacity = '0.7';
+  btn.disabled = true;
+  feedback.style.display = 'none';
+
+  try {
+    const res = await fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'api-key': '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'
+      },
+      body: JSON.stringify({
+        sender: { name: name, email: 'info@thepuppymethod.store' },
+        to: [{ email: 'thepuppymethod@outlook.com', name: 'The Puppy Method' }],
+        replyTo: { email: email, name: name },
+        subject: 'New message from ' + name,
+        htmlContent: '<p><strong>Name:</strong> ' + name + '</p><p><strong>Email:</strong> ' + email + '</p><p><strong>Message:</strong><br>' + message.replace(/
+/g, '<br>') + '</p>'
+      })
+    });
+
+    if (res.ok) {
+      feedback.textContent = '✓ Message sent! I'll get back to you within 24 hours.';
+      feedback.style.color = 'var(--secondary)';
+      document.getElementById('contact-form').reset();
+    } else {
+      throw new Error('Send failed');
+    }
+  } catch(err) {
+    feedback.textContent = 'Something went wrong. Please email us directly at thepuppymethod@outlook.com';
+    feedback.style.color = 'var(--primary)';
+  } finally {
+    feedback.style.display = 'block';
+    btn.textContent = 'Send message';
+    btn.style.opacity = '1';
+    btn.disabled = false;
+  }
+}
+</script>
 </body>
 </html>
