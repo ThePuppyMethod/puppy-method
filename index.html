@@ -689,6 +689,73 @@ src="https://www.facebook.com/tr?id=2223174461841975&ev=PageView&noscript=1"
     .timer-num { width: 64px; height: 64px; font-size: 2.25rem; }
     .steps-row { grid-template-columns: 1fr; gap: 2rem; }
   }
+
+  @media (max-width: 768px) {
+    /* Emotional section — stack image first, then copy */
+    .emotional-grid {
+      grid-template-columns: 1fr !important;
+    }
+    .emotional-grid .emotional-img { order: -1; }
+    .emotional-grid .emotional-text { order: 1; }
+
+    /* About/Brenda section — stack image first, then copy */
+    .about-grid {
+      grid-template-columns: 1fr !important;
+    }
+    .about-grid .about-img { order: -1; }
+    .about-grid .about-text { order: 1; }
+
+    /* Contact form grid — stack */
+    .contact-name-email {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  /* ── TESTIMONIALS CAROUSEL ── */
+  .carousel-wrap { position: relative; overflow: hidden; }
+  .carousel-track {
+    display: flex;
+    transition: transform 400ms ease-out;
+    gap: 1.25rem;
+  }
+  .carousel-track .testimonial-card {
+    flex: 0 0 calc((100% - 2.5rem) / 3);
+    min-width: 0;
+  }
+  .carousel-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .carousel-btn {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--background);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 200ms ease-out;
+    flex-shrink: 0;
+  }
+  .carousel-btn:hover { background: var(--surface); border-color: var(--primary); }
+  .carousel-btn svg { width: 18px; height: 18px; color: var(--text-primary); }
+  .carousel-dots { display: flex; gap: 6px; }
+  .carousel-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--border);
+    cursor: pointer;
+    transition: background 200ms ease-out, transform 200ms ease-out;
+  }
+  .carousel-dot.active { background: var(--primary); transform: scale(1.3); }
+  @media (max-width: 768px) {
+    .carousel-track .testimonial-card { flex: 0 0 100%; }
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .carousel-track .testimonial-card { flex: 0 0 calc((100% - 1.25rem) / 2); }
+  }
 </style>
 <!-- Meta Pixel — PageView -->
 <script>
@@ -766,6 +833,36 @@ fbq('track', 'PageView');
 <div class="proof-bar">
   <p><span>2.341 exhausted owners</span> joined The Pack this month.</p>
 </div>
+
+<!-- EMOTIONAL SECTION -->
+<section style="background: var(--surface); padding: 5rem 0;">
+  <div class="container">
+    <div class="emotional-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; max-width:1000px; margin:0 auto;">
+      
+      <div class="emotional-text">
+        <p class="overline primary" style="margin-bottom:0.75rem;">Picture this</p>
+        <p style="font-family:var(--font-heading); font-size:clamp(1.5rem,2.5vw,2rem); font-style:italic; color:var(--text-primary); line-height:1.5; margin-bottom:2rem;">You walk through the door after a long day — and the house is <em style="color:var(--primary); font-style:normal;">exactly as you left it.</em></p>
+
+        <p style="font-size:1rem; color:var(--text-secondary); line-height:1.75; margin-bottom:1.5rem;"><strong style="color:var(--text-primary); font-weight:600;">No chewed cushions. No accidents on the floor.</strong> Just a puppy who runs to greet you — calm, happy, and under control.</p>
+
+        <p style="font-size:1rem; color:var(--text-secondary); line-height:1.75; margin-bottom:1.5rem;"><strong style="color:var(--text-primary); font-weight:600;">Imagine leaving for work without the anxiety.</strong> Without spending the whole day wondering what you'll find when you get home.</p>
+
+        <p style="font-size:1rem; color:var(--text-secondary); line-height:1.75; margin-bottom:2rem;"><strong style="color:var(--text-primary); font-weight:600;">Imagine your home feeling like yours again.</strong> Peaceful. Predictable. And a puppy that actually fits into your life — instead of turning it upside down.</p>
+
+        <p style="font-family:var(--font-heading); font-size:1.25rem; font-weight:600; color:var(--primary);">That's not a dream. That's what a plan does.</p>
+      </div>
+
+      <div class="emotional-img">
+        <!-- Replace with: <img src="emotional-image.jpg" alt="" style="width:100%;border-radius:20px;object-fit:cover;aspect-ratio:4/5;"> -->
+        <div style="width:100%;aspect-ratio:4/5;border-radius:20px;background:var(--background);border:1.5px dashed var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem;">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--text-muted);opacity:0.35;"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span style="font-size:0.8125rem;color:var(--text-muted);opacity:0.6;">emotional-image.jpg</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <!-- PRODUCT SECTION -->
 <section class="product-section" id="buy">
@@ -906,7 +1003,8 @@ fbq('track', 'PageView');
   <div class="container">
     <h2>Real Owners. Real Nights.</h2>
     <p class="testimonials-count"><strong>2,341 exhausted owners</strong> joined The Pack this month.</p>
-    <div class="testimonials-grid">
+    <div class="carousel-wrap">
+      <div class="carousel-track testimonials-grid" id="carousel-track">
 
       <div class="testimonial-card fade-up">
         <div class="testimonial-stars">
@@ -970,7 +1068,92 @@ fbq('track', 'PageView');
         <p class="testimonial-author">Ryan O'Connor, Vancouver</p>
       </div>
 
+      <!-- NEW TESTIMONIALS 6-11 -->
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-quote">I was convinced I was the problem. Day 14, he slept through. I'm not the problem — I just needed the right method.</p>
+        <p class="testimonial-author">Sophie M., Lyon · 9-week Labrador</p>
+      </div>
+
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-quote">The potty training section alone is worth every cent. From 6 accidents a day to zero in 10 days. I couldn't believe it.</p>
+        <p class="testimonial-author">Carlos R., Madrid · First-time owner, 10-week Beagle</p>
+      </div>
+
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-quote">I was about to hire an expensive trainer. This bundle answered every single question I had — and ones I didn't know I had yet.</p>
+        <p class="testimonial-author">Priya N., London · 8-week Cockapoo</p>
+      </div>
+
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-quote">The daily planner changed everything. I stopped guessing and started following the plan. By week 3 we had a completely different puppy.</p>
+        <p class="testimonial-author">Tom & Laura B., Amsterdam · 11-week French Bulldog</p>
+      </div>
+
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-quote">My sister bought this too after seeing the change in our dog. The cheat sheets are genius — fast, clear, no panic. Exactly what you need at 2am.</p>
+        <p class="testimonial-author">Emma K., Stockholm · 8-week Dachshund</p>
+      </div>
+
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-quote">I've read three puppy books. None of them gave me what this bundle did in the first 20 pages. Real scenarios, real answers. No fluff.</p>
+        <p class="testimonial-author">James O., Dublin · 9-week Border Terrier</p>
+      </div>
+
+      </div><!-- end carousel-track -->
+    </div><!-- end carousel-wrap -->
+
+    <div class="carousel-nav">
+      <button class="carousel-btn" id="carousel-prev" aria-label="Previous">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="carousel-dots" id="carousel-dots"></div>
+      <button class="carousel-btn" id="carousel-next" aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
     </div>
+
   </div>
 </section>
 
@@ -1028,11 +1211,11 @@ fbq('track', 'PageView');
 <!-- ABOUT -->
 <section style="padding: 5rem 0;">
   <div class="container">
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; max-width:1000px; margin:0 auto;">
-      <div>
+    <div class="about-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; max-width:1000px; margin:0 auto;">
+      <div class="about-img">
         <img src="brenda.png" alt="Brenda" style="width:100%;border-radius:20px;object-fit:cover;aspect-ratio:4/5;">
       </div>
-      <div>
+      <div class="about-text">
         <p class="overline primary" style="margin-bottom:0.75rem;">About Me</p>
         <p style="font-family:var(--font-heading);font-size:1.125rem;font-weight:500;font-style:italic;color:var(--text-secondary);margin-bottom:0.5rem;">Hi, I'm Brenda.</p>
         <h2 style="font-family:var(--font-heading);font-size:clamp(2rem,3.5vw,2.75rem);font-weight:600;line-height:1.15;letter-spacing:-0.02em;margin-bottom:1.25rem;">I've been where you are. At 3am. Alone. Googling everything.</h2>
@@ -1051,7 +1234,7 @@ fbq('track', 'PageView');
     <h2 style="font-family:var(--font-heading);font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:600;text-align:center;letter-spacing:-0.01em;margin-bottom:0.75rem;">Get in touch</h2>
     <p style="text-align:center;color:var(--text-secondary);margin-bottom:3rem;">I personally reply to every message within 24 hours.</p>
     <form action="https://formspree.io/f/thepuppymethod@outlook.com" method="POST" style="display:flex;flex-direction:column;gap:1.25rem;">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+      <div class="contact-name-email" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
         <div>
           <label style="font-size:0.8125rem;font-weight:600;color:var(--text-secondary);display:block;margin-bottom:0.4rem;">Name</label>
           <input type="text" name="name" required placeholder="Your name" style="width:100%;padding:0.875rem 1rem;border:1px solid var(--border);border-radius:12px;background:var(--background);font-family:var(--font-body);font-size:1rem;color:var(--text-primary);outline:none;transition:border 200ms ease-out;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'">
@@ -1226,6 +1409,57 @@ function trackAndGo(e, el) {
     window.location.href = el.href;
   }, 300);
 }
+</script>
+
+
+<script>
+(function() {
+  const track = document.getElementById('carousel-track');
+  const dotsContainer = document.getElementById('carousel-dots');
+  if (!track) return;
+
+  const cards = track.querySelectorAll('.testimonial-card');
+  let current = 0;
+
+  function getVisible() {
+    if (window.innerWidth < 769) return 1;
+    if (window.innerWidth < 1025) return 2;
+    return 3;
+  }
+
+  function totalPages() {
+    return Math.ceil(cards.length / getVisible());
+  }
+
+  function buildDots() {
+    dotsContainer.innerHTML = '';
+    const pages = totalPages();
+    for (let i = 0; i < pages; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (i === current ? ' active' : '');
+      dot.addEventListener('click', () => goTo(i));
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  function goTo(page) {
+    const pages = totalPages();
+    current = Math.max(0, Math.min(page, pages - 1));
+    const visible = getVisible();
+    const cardWidth = cards[0].offsetWidth + 20; // gap 1.25rem ~ 20px
+    track.style.transform = `translateX(-${current * visible * cardWidth}px)`;
+    document.querySelectorAll('.carousel-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  document.getElementById('carousel-prev').addEventListener('click', () => goTo(current - 1));
+  document.getElementById('carousel-next').addEventListener('click', () => goTo(current + 1));
+
+  window.addEventListener('resize', () => { current = 0; buildDots(); goTo(0); });
+
+  buildDots();
+})();
 </script>
 
 </body>
