@@ -756,6 +756,27 @@ src="https://www.facebook.com/tr?id=2223174461841975&ev=PageView&noscript=1"
   @media (min-width: 769px) and (max-width: 1024px) {
     .carousel-track .testimonial-card { flex: 0 0 calc((100% - 1.25rem) / 2); }
   }
+
+  /* ── CURRENCY SELECTOR ── */
+  .currency-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B5D54' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 0.5rem center;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.35rem 1.75rem 0.35rem 0.6rem;
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: border 200ms ease-out;
+    min-width: 80px;
+  }
+  .currency-select:hover { border-color: var(--primary); }
+  .currency-select:focus { outline: none; border-color: var(--primary); }
+  @media (max-width: 640px) { .currency-select { font-size: 0.75rem; padding: 0.3rem 1.5rem 0.3rem 0.5rem; } }
+
 </style>
 <!-- Meta Pixel — PageView -->
 <script>
@@ -779,8 +800,28 @@ fbq('track', 'PageView');
 <!-- HEADER -->
 <header class="site-header">
   <div class="header-inner">
-    <!-- Left: empty spacer for 3-col grid balance -->
-    <div></div>
+    <!-- Left: currency selector -->
+    <div style="display:flex; align-items:center;">
+      <select class="currency-select" id="currency-selector" aria-label="Select currency">
+        <option value="EUR">🇪🇺 EUR</option>
+        <option value="USD">🇺🇸 USD</option>
+        <option value="GBP">🇬🇧 GBP</option>
+        <option value="AUD">🇦🇺 AUD</option>
+        <option value="CAD">🇨🇦 CAD</option>
+        <option value="CHF">🇨🇭 CHF</option>
+        <option value="SEK">🇸🇪 SEK</option>
+        <option value="NOK">🇳🇴 NOK</option>
+        <option value="DKK">🇩🇰 DKK</option>
+        <option value="PLN">🇵🇱 PLN</option>
+        <option value="BRL">🇧🇷 BRL</option>
+        <option value="MXN">🇲🇽 MXN</option>
+        <option value="NZD">🇳🇿 NZD</option>
+        <option value="SGD">🇸🇬 SGD</option>
+        <option value="JPY">🇯🇵 JPY</option>
+        <option value="INR">🇮🇳 INR</option>
+        <option value="ZAR">🇿🇦 ZAR</option>
+      </select>
+    </div>
 
     <!-- Center: logo -->
     <div class="header-logo">
@@ -883,8 +924,8 @@ fbq('track', 'PageView');
         <p class="product-sub">200+ pages, audios &amp; printable tools. Built from 465 real owner stories — including the regression no one warns you about.</p>
 
         <div class="price-block">
-          <span class="price-main">€37</span>
-          <span class="price-old">€97</span>
+          <span class="price-main" id="price-main">€37</span>
+          <span class="price-old" id="price-old">€97</span>
           <span class="price-badge">Save 60%</span>
         </div>
 
@@ -1291,7 +1332,28 @@ fbq('track', 'PageView');
         font-size: 0.9375rem !important;
         margin-bottom: 1rem;
       }
-    </style>
+    
+  /* ── CURRENCY SELECTOR ── */
+  .currency-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B5D54' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 0.5rem center;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.35rem 1.75rem 0.35rem 0.6rem;
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: border 200ms ease-out;
+    min-width: 80px;
+  }
+  .currency-select:hover { border-color: var(--primary); }
+  .currency-select:focus { outline: none; border-color: var(--primary); }
+  @media (max-width: 640px) { .currency-select { font-size: 0.75rem; padding: 0.3rem 1.5rem 0.3rem 0.5rem; } }
+
+</style>
 
     <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
 
@@ -1556,5 +1618,93 @@ function trackAndGo(e, el) {
 
 
 
+
+<script>
+(async function() {
+  const BASE_EUR = 37;
+  const BASE_EUR_OLD = 97;
+
+  const SYMBOLS = {
+    'EUR': '€', 'USD': '$', 'GBP': '£', 'AUD': 'A$', 'CAD': 'C$',
+    'CHF': 'CHF ', 'SEK': 'kr', 'NOK': 'kr', 'DKK': 'kr', 'PLN': 'zł',
+    'BRL': 'R$', 'MXN': '$', 'NZD': 'NZ$', 'SGD': 'S$', 'HKD': 'HK$',
+    'JPY': '¥', 'INR': '₹', 'ZAR': 'R'
+  };
+
+  const COUNTRY_CURRENCY = {
+    'US':'USD','GB':'GBP','AU':'AUD','CA':'CAD','CH':'CHF',
+    'SE':'SEK','NO':'NOK','DK':'DKK','PL':'PLN','BR':'BRL',
+    'MX':'MXN','NZ':'NZD','SG':'SGD','HK':'HKD','JP':'JPY',
+    'IN':'INR','ZA':'ZAR'
+  };
+
+  let allRates = {};
+  let currentMain = '€37';
+  let currentOld = '€97';
+
+  function formatPrice(amount, symbol) {
+    return symbol + Math.round(amount);
+  }
+
+  function updatePrices(code) {
+    const rate = code === 'EUR' ? 1 : allRates[code];
+    if (!rate) return;
+    const symbol = SYMBOLS[code] || '€';
+
+    const newMain = formatPrice(BASE_EUR * rate, symbol);
+    const newOld = formatPrice(BASE_EUR_OLD * rate, symbol);
+
+    // Update price block
+    const mainEl = document.getElementById('price-main');
+    const oldEl = document.getElementById('price-old');
+    if (mainEl) mainEl.textContent = newMain;
+    if (oldEl) oldEl.textContent = newOld;
+
+    // Update buttons
+    document.querySelectorAll('.btn-primary').forEach(btn => {
+      btn.textContent = btn.textContent
+        .replace(currentMain, newMain)
+        .replace(currentOld, newOld);
+    });
+
+    // Update scarcity/urgency text
+    document.querySelectorAll('.scarcity-line, .urgency-sub, .cta-sub').forEach(el => {
+      el.innerHTML = el.innerHTML
+        .replace(new RegExp(currentOld.replace('$','\$'), 'g'), newOld)
+        .replace(new RegExp(currentMain.replace('$','\$'), 'g'), newMain);
+    });
+
+    currentMain = newMain;
+    currentOld = newOld;
+
+    // Sync selector
+    const selector = document.getElementById('currency-selector');
+    if (selector) selector.value = code;
+  }
+
+  // Handle manual selector change
+  document.getElementById('currency-selector')?.addEventListener('change', function() {
+    updatePrices(this.value);
+  });
+
+  try {
+    // Fetch all rates once
+    const rateRes = await fetch('https://open.er-api.com/v6/latest/EUR');
+    const rateData = await rateRes.json();
+    allRates = rateData.rates || {};
+
+    // Auto-detect country
+    const geoRes = await fetch('https://ipapi.co/json/');
+    const geo = await geoRes.json();
+    const detectedCurrency = COUNTRY_CURRENCY[geo.country_code];
+
+    if (detectedCurrency && detectedCurrency !== 'EUR') {
+      updatePrices(detectedCurrency);
+    }
+  } catch(e) {
+    console.log('Currency conversion unavailable, keeping EUR');
+  }
+})();
+</script>
 </body>
 </html>
