@@ -1693,10 +1693,23 @@ function trackAndGo(e, el) {
     const rateData = await rateRes.json();
     allRates = rateData.rates || {};
 
-    // Auto-detect country
-    const geoRes = await fetch('https://ipapi.co/json/');
-    const geo = await geoRes.json();
-    const detectedCurrency = COUNTRY_CURRENCY[geo.country_code];
+    // Auto-detect country — try multiple APIs
+    let detectedCurrency = null;
+    const geoAPIs = [
+      () => fetch('https://ipapi.co/json/').then(r => r.json()).then(d => d.country_code),
+      () => fetch('https://api.country.is/').then(r => r.json()).then(d => d.country),
+      () => fetch('https://freeipapi.com/api/json').then(r => r.json()).then(d => d.countryCode),
+    ];
+
+    for (const api of geoAPIs) {
+      try {
+        const code = await api();
+        if (code && COUNTRY_CURRENCY[code]) {
+          detectedCurrency = COUNTRY_CURRENCY[code];
+          break;
+        }
+      } catch(e) { continue; }
+    }
 
     if (detectedCurrency && detectedCurrency !== 'EUR') {
       updatePrices(detectedCurrency);
