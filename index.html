@@ -45,7 +45,7 @@ src="https://www.facebook.com/tr?id=2223174461841975&ev=PageView&noscript=1"
     --font-body: 'Inter', -apple-system, system-ui, sans-serif;
   }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
 
   body {
     background: var(--background);
@@ -54,6 +54,7 @@ src="https://www.facebook.com/tr?id=2223174461841975&ev=PageView&noscript=1"
     font-size: 1.0625rem;
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
   .container { max-width: 1140px; margin: 0 auto; padding: 0 1.5rem; }
@@ -709,6 +710,7 @@ src="https://www.facebook.com/tr?id=2223174461841975&ev=PageView&noscript=1"
     .contact-name-email {
       grid-template-columns: 1fr !important;
     }
+    #contact-name-email-grid { grid-template-columns: 1fr !important; }
   }
 
   /* ── TESTIMONIALS CAROUSEL ── */
@@ -1367,7 +1369,7 @@ fbq('track', 'PageView');
         </div>
         <div id="sib-container" class="sib-container--large sib-container--horizontal">
           <form id="sib-form" method="POST" action="https://2fba50dc.sibforms.com/serve/MUIFAHiv30G0TYKU_ttJ0kzYm9heclncuD_H-KV09a3VzdtF_D9AkHRvhwQEyqE7WsctEae7L7r9Fc68UHG2ZEwT4RPhhhLgm-IXO81XgeE4j_cP45KPhpnBhDArKiWpDyHXiATb2C0XXblTy7hThCHUYDV8Xu9YFrLKN2dHFERkcRohFIRasGTI4zQzNzNkO4C7B7W9Lj2D8NZTfA==" data-type="subscription">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem;" id="contact-name-email-grid">
               <div>
                 <label class="entry__label" style="font-family:var(--font-body);font-size:0.8125rem;font-weight:600;color:var(--text-secondary);display:block;margin-bottom:0.4rem;" for="NOME">Name</label>
                 <input class="input" maxlength="200" type="text" id="NOME" name="NOME" autocomplete="off" placeholder="Your name" data-required="true" required>
