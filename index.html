@@ -1273,135 +1273,72 @@ fbq('track', 'PageView');
     <h2 style="font-family:var(--font-heading);font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:600;text-align:center;letter-spacing:-0.01em;margin-bottom:0.75rem;">Get in touch</h2>
     <p style="text-align:center;color:var(--text-secondary);margin-bottom:3rem;">I personally reply to every message within 24 hours.</p>
 
-    <!-- Brevo Form — styled to match site -->
-    <style>
-      #sib-container { background: transparent !important; border: none !important; border-radius: 0 !important; max-width: 100% !important; text-align: left !important; }
-      #sib-form .sib-form-block { padding: 0 !important; }
-      #sib-form .form__label-row { flex-direction: column !important; align-items: flex-start !important; gap: 0 !important; }
-      #sib-form .entry__label {
-        font-family: var(--font-body) !important;
-        font-size: 0.8125rem !important;
-        font-weight: 600 !important;
-        color: var(--text-secondary) !important;
-        margin-bottom: 0.4rem !important;
-        text-align: left !important;
-      }
-      #sib-form .input {
-        width: 100% !important;
-        padding: 0.875rem 1rem !important;
-        border: 1px solid var(--border) !important;
-        border-radius: 12px !important;
-        background: var(--background) !important;
-        font-family: var(--font-body) !important;
-        font-size: 1rem !important;
-        color: var(--text-primary) !important;
-        outline: none !important;
-        transition: border 200ms ease-out !important;
-        box-shadow: none !important;
-      }
-      #sib-form .input:focus { border-color: var(--primary) !important; }
-      #sib-form textarea.input { resize: vertical !important; min-height: 130px !important; }
-      #sib-form .sib-form-block__button {
-        background: var(--primary) !important;
-        color: #FBF7F2 !important;
-        font-family: var(--font-body) !important;
-        font-size: 1rem !important;
-        font-weight: 600 !important;
-        padding: 1rem 2.5rem !important;
-        border-radius: 12px !important;
-        border: none !important;
-        cursor: pointer !important;
-        transition: background 200ms ease-out, transform 200ms ease-out !important;
-        box-shadow: 0 4px 16px rgba(201,123,92,0.28) !important;
-        letter-spacing: -0.01em !important;
-      }
-      #sib-form .sib-form-block__button:hover { background: var(--primary-hover) !important; transform: translateY(-2px) !important; }
-      #sib-form-container > div:first-child, #sib-form-container > div:nth-child(2) { margin-bottom: 1rem; }
-      .sib-form { background: transparent !important; padding: 0 !important; }
-      .sib-form-container { padding: 0 !important; }
-      #sib-form > div { padding: 0 0 1.25rem 0 !important; }
-      .entry__specification { display: none !important; }
-      #sib-container input::placeholder { color: var(--text-muted) !important; font-family: var(--font-body) !important; }
-      #sib-container textarea::placeholder { color: var(--text-muted) !important; font-family: var(--font-body) !important; }
-      #error-message, #success-message {
-        max-width: 100% !important;
-        border-radius: 12px !important;
-        font-family: var(--font-body) !important;
-        font-size: 0.9375rem !important;
-        margin-bottom: 1rem;
-      }
-    
-  /* ── CURRENCY SELECTOR ── */
-  .currency-select {
-    appearance: none;
-    -webkit-appearance: none;
-    background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B5D54' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 0.5rem center;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 0.35rem 1.75rem 0.35rem 0.6rem;
-    font-family: var(--font-body);
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-    cursor: pointer;
-    transition: border 200ms ease-out;
-    min-width: 80px;
-  }
-  .currency-select:hover { border-color: var(--primary); }
-  .currency-select:focus { outline: none; border-color: var(--primary); }
-  @media (max-width: 640px) { .currency-select { font-size: 0.75rem; padding: 0.3rem 1.5rem 0.3rem 0.5rem; } }
-
-</style>
-
-    <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
-
-    <div class="sib-form">
-      <div id="sib-form-container" class="sib-form-container">
-        <div id="error-message" class="sib-form-message-panel" style="font-size:15px;text-align:left;font-family:Helvetica,sans-serif;color:#661d1d;background-color:#ffeded;border-radius:12px;border-color:#ff4949;max-width:100%;display:none;">
-          <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
-            <span class="sib-form-message-panel__inner-text">Something went wrong. Please try again or email us directly at thepuppymethod@outlook.com</span>
-          </div>
+    <form id="contact-form" method="POST" action="https://2fba50dc.sibforms.com/serve/MUIFAHiv30G0TYKU_ttJ0kzYm9heclncuD_H-KV09a3VzdtF_D9AkHRvhwQEyqE7WsctEae7L7r9Fc68UHG2ZEwT4RPhhhLgm-IXO81XgeE4j_cP45KPhpnBhDArKiWpDyHXiATb2C0XXblTy7hThCHUYDV8Xu9YFrLKN2dHFERkcRohFIRasGTI4zQzNzNkO4C7B7W9Lj2D8NZTfA==" data-type="subscription" style="display:flex;flex-direction:column;gap:1.25rem;">
+      
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <div style="flex:1;min-width:200px;">
+          <label style="font-family:var(--font-body);font-size:0.8125rem;font-weight:600;color:var(--text-secondary);display:block;margin-bottom:0.4rem;" for="NOME">Name</label>
+          <input type="text" id="NOME" name="NOME" required placeholder="Your name" autocomplete="off" data-required="true"
+            style="width:100%;padding:0.875rem 1rem;border:1px solid var(--border);border-radius:12px;background:var(--background);font-family:var(--font-body);font-size:1rem;color:var(--text-primary);outline:none;transition:border 200ms ease-out;box-sizing:border-box;"
+            onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'">
         </div>
-        <div id="success-message" class="sib-form-message-panel" style="font-size:15px;text-align:left;font-family:Helvetica,sans-serif;color:#085229;background-color:#e7faf0;border-radius:12px;border-color:#13ce66;max-width:100%;display:none;">
-          <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
-            <span class="sib-form-message-panel__inner-text">Your message has been sent! I'll get back to you within 24 hours.</span>
-          </div>
-        </div>
-        <div id="sib-container" class="sib-container--large sib-container--horizontal">
-          <form id="sib-form" method="POST" action="https://2fba50dc.sibforms.com/serve/MUIFAHiv30G0TYKU_ttJ0kzYm9heclncuD_H-KV09a3VzdtF_D9AkHRvhwQEyqE7WsctEae7L7r9Fc68UHG2ZEwT4RPhhhLgm-IXO81XgeE4j_cP45KPhpnBhDArKiWpDyHXiATb2C0XXblTy7hThCHUYDV8Xu9YFrLKN2dHFERkcRohFIRasGTI4zQzNzNkO4C7B7W9Lj2D8NZTfA==" data-type="subscription">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem;" id="contact-name-email-grid">
-              <div>
-                <label class="entry__label" style="font-family:var(--font-body);font-size:0.8125rem;font-weight:600;color:var(--text-secondary);display:block;margin-bottom:0.4rem;" for="NOME">Name</label>
-                <input class="input" maxlength="200" type="text" id="NOME" name="NOME" autocomplete="off" placeholder="Your name" data-required="true" required>
-              </div>
-              <div>
-                <label class="entry__label" style="font-family:var(--font-body);font-size:0.8125rem;font-weight:600;color:var(--text-secondary);display:block;margin-bottom:0.4rem;" for="EMAIL">Email</label>
-                <input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" placeholder="your@email.com" data-required="true" required>
-              </div>
-            </div>
-            <div style="margin-bottom:1.25rem;">
-              <label class="entry__label" style="font-family:var(--font-body);font-size:0.8125rem;font-weight:600;color:var(--text-secondary);display:block;margin-bottom:0.4rem;" for="JOB_TITLE">Message</label>
-              <textarea rows="5" class="input" maxlength="500" id="JOB_TITLE" name="JOB_TITLE" autocomplete="off" placeholder="Write your message here..." data-required="true" required></textarea>
-            </div>
-            <div>
-              <button class="sib-form-block__button sib-form-block__button-with-loader" form="sib-form" type="submit">Send message</button>
-            </div>
-            <input type="text" name="email_address_check" value="" class="input--hidden">
-            <input type="hidden" name="locale" value="en">
-          </form>
+        <div style="flex:1;min-width:200px;">
+          <label style="font-family:var(--font-body);font-size:0.8125rem;font-weight:600;color:var(--text-secondary);display:block;margin-bottom:0.4rem;" for="EMAIL">Email</label>
+          <input type="email" id="EMAIL" name="EMAIL" required placeholder="your@email.com" autocomplete="off" data-required="true"
+            style="width:100%;padding:0.875rem 1rem;border:1px solid var(--border);border-radius:12px;background:var(--background);font-family:var(--font-body);font-size:1rem;color:var(--text-primary);outline:none;transition:border 200ms ease-out;box-sizing:border-box;"
+            onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'">
         </div>
       </div>
-    </div>
+
+      <div>
+        <label style="font-family:var(--font-body);font-size:0.8125rem;font-weight:600;color:var(--text-secondary);display:block;margin-bottom:0.4rem;" for="JOB_TITLE">Message</label>
+        <textarea id="JOB_TITLE" name="JOB_TITLE" required rows="5" placeholder="Write your message here..." autocomplete="off" data-required="true"
+          style="width:100%;padding:0.875rem 1rem;border:1px solid var(--border);border-radius:12px;background:var(--background);font-family:var(--font-body);font-size:1rem;color:var(--text-primary);outline:none;resize:vertical;transition:border 200ms ease-out;box-sizing:border-box;"
+          onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+        <button type="submit" class="btn-primary" style="padding:1rem 2.5rem;">Send message</button>
+        <p id="contact-feedback" style="font-size:0.875rem;color:var(--text-muted);display:none;margin:0;"></p>
+      </div>
+
+      <input type="text" name="email_address_check" value="" style="display:none;">
+      <input type="hidden" name="locale" value="en">
+    </form>
 
     <script>
-      window.REQUIRED_CODE_ERROR_MESSAGE = 'Please choose a country prefix';
-      window.LOCALE = 'en';
-      window.EMAIL_INVALID_MESSAGE = "The information provided is not valid. Please check the field format and try again.";
-      window.REQUIRED_ERROR_MESSAGE = "This field cannot be left empty.";
-      window.GENERIC_INVALID_MESSAGE = "The information provided is not valid. Please check the field format and try again.";
-      var AUTOHIDE = Boolean(0);
+      document.getElementById('contact-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = this.querySelector('button[type="submit"]');
+        const feedback = document.getElementById('contact-feedback');
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+        feedback.style.display = 'none';
+
+        try {
+          const formData = new FormData(this);
+          const res = await fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok || res.status === 302) {
+            feedback.textContent = "✓ Message sent! I'll get back to you within 24 hours.";
+            feedback.style.color = 'var(--secondary)';
+            this.reset();
+          } else {
+            throw new Error();
+          }
+        } catch(err) {
+          feedback.textContent = "Something went wrong. Email us at thepuppymethod@outlook.com";
+          feedback.style.color = 'var(--primary)';
+        } finally {
+          feedback.style.display = 'block';
+          btn.textContent = 'Send message';
+          btn.disabled = false;
+        }
+      });
     </script>
-    <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
 
   </div>
 </section>
