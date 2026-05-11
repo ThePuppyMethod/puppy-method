@@ -1567,10 +1567,23 @@ function trackAndGo(e, el) {
   };
 
   const COUNTRY_CURRENCY = {
-    'US':'USD','GB':'GBP','AU':'AUD','CA':'CAD','CH':'CHF',
-    'SE':'SEK','NO':'NOK','DK':'DKK','PL':'PLN','BR':'BRL',
-    'MX':'MXN','NZ':'NZD','SG':'SGD','HK':'HKD','JP':'JPY',
-    'IN':'INR','ZA':'ZAR'
+    'US':'USD','USA':'USD',
+    'GB':'GBP','GBR':'GBP',
+    'AU':'AUD','AUS':'AUD',
+    'CA':'CAD','CAN':'CAD',
+    'CH':'CHF','CHE':'CHF',
+    'SE':'SEK','SWE':'SEK',
+    'NO':'NOK','NOR':'NOK',
+    'DK':'DKK','DNK':'DKK',
+    'PL':'PLN','POL':'PLN',
+    'BR':'BRL','BRA':'BRL',
+    'MX':'MXN','MEX':'MXN',
+    'NZ':'NZD','NZL':'NZD',
+    'SG':'SGD','SGP':'SGD',
+    'HK':'HKD','HKG':'HKD',
+    'JP':'JPY','JPN':'JPY',
+    'IN':'INR','IND':'INR',
+    'ZA':'ZAR','ZAF':'ZAR'
   };
 
   let allRates = {};
@@ -1631,9 +1644,9 @@ function trackAndGo(e, el) {
     // Auto-detect country — try multiple APIs
     let detectedCurrency = null;
     const geoAPIs = [
-      () => fetch('https://ipapi.co/json/').then(r => r.json()).then(d => d.country_code),
-      () => fetch('https://api.country.is/').then(r => r.json()).then(d => d.country),
-      () => fetch('https://freeipapi.com/api/json').then(r => r.json()).then(d => d.countryCode),
+      () => fetch('https://ipapi.co/json/').then(r => r.json()).then(d => { console.log('ipapi:', d.country_code); return d.country_code; }),
+      () => fetch('https://api.country.is/').then(r => r.json()).then(d => { console.log('country.is:', d.country); return d.country; }),
+      () => fetch('https://freeipapi.com/api/json').then(r => r.json()).then(d => { console.log('freeipapi:', d.countryCode); return d.countryCode; }),
     ];
 
     for (const api of geoAPIs) {
